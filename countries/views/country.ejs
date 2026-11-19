@@ -1,34 +1,84 @@
 <% layout('./layout/page.ejs') %>
 
-    <h2>
-        <%= country.name %>
-    </h2>
+    <div class="country-card">
 
-    <img src="/images/<%= country.slug %>.jpg" alt="<%= country.name %>" />
+        <div class="country-photo">
+            <img src="/images/<%= country.slug %>.jpg" alt="<%= country.name %>">
+        </div>
 
-    <h3>Информация о стране</h3>
+        <div class="country-title">
+            <span>✿ СТРАНА МИРА ✿</span>
+            <h2>
+                <%= country.name %>
+            </h2>
+            <p>
+                <%= country.region %>
+            </p>
+        </div>
 
-    <p><b>Регион:</b>
-        <%= country.region %>
-    </p>
+        <div class="country-details">
 
-    <p><b>Население:</b>
-        <%= country.population.toLocaleString('ru-RU') %>
-    </p>
+            <h3>Информация о стране</h3>
 
-    <p><b>Столица:</b>
-        <%= country.capital %>
-    </p>
+            <div class="country-grid">
 
-    <p><b>Языки:</b>
-        <%= country.languages.join(', ') %></p>
+                <div class="country-item">
+                    <span>🌍</span>
+                    <small>Континент</small>
+                    <strong>
+                        <%= country.region %>
+                    </strong>
+                </div>
 
-<p><b>Крупные города:</b> <%= country.cities.join(' , ') %></p>
+                <div class="country-item">
+                    <span>🏛️</span>
+                    <small>Столица</small>
+                    <strong>
+                        <%= country.capital %>
+                    </strong>
+                </div>
 
-<p>
-    <b>Вакцинация:</b>
-    <%= country.vaccinated === undefined
-        ? ' Не указано' : country.vaccinated ? 'Да' : 'Нет' %>
-    </p>
+                <div class="country-item">
+                    <span>👥</span>
+                    <small>Население</small>
+                    <strong>
+                        <%= country.population.toLocaleString('ru-RU') %>
+                    </strong>
+                </div>
 
-    <a href="/">← Вернуться к списку стран</a>
+                <div class="country-item">
+                    <span>💬</span>
+                    <small>Языки</small>
+                    <strong>
+                        <%= country.languages.join(', ') %></strong>
+            </div>
+
+        </div>
+
+        <div class="country-section">
+            <h3>🏙️ Крупные города</h3>
+
+            <div class="country-cities">
+                <% country.cities.forEach(function(city) { %>
+                    <span><%= city %></span>
+                <% }); %>
+            </div>
+        </div>
+
+        <div class="country-section">
+            <h3> Статус вакцинации</h3>
+
+            <% if (country.vaccinated === true) { %>
+                <span class="vaccine yes">✓ Вакцинация: да</span>
+            <% } else if (country.vaccinated === false) { %>
+                <span class="vaccine no">Вакцинация: нет</span>
+            <% } else { %>
+                <span class="vaccine unknown">Не указано</span>
+            <% } %>
+        </div>
+
+    </div>
+
+    <a href="/" class="country-back">← Все страны</a>
+
+</div>

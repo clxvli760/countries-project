@@ -130,6 +130,31 @@ router.get('/', function (req, res, next) {
   });
 });
 
+
+// Страница континента
+router.get('/region/:region', function (req, res, next) {
+
+  // Получаем название континента из адреса
+  var region = req.params.region;
+
+  // Отбираем страны нужного континента
+  var regionCountries = countries.filter(function (item) {
+    return item.region === region;
+  });
+
+  // Если стран не найдено
+  if (regionCountries.length === 0) {
+    return next();
+  }
+
+  // Открываем страницу с найденными странами
+  res.render('index', {
+    title: region,
+    countries: regionCountries
+  });
+});
+
+
 // Страница отдельной страны
 router.get('/:slug', function (req, res, next) {
 

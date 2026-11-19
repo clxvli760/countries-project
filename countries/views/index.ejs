@@ -1,22 +1,33 @@
 <% layout('./layout/page.ejs') %>
 
-  <h2>Откройте для себя мир!</h2>
+  <% if (title==='Страны мира' ) { %>
 
-  <p>Выберите страну, чтобы узнать о ней подробнее.</p>
+    <h2>Откройте для себя мир!</h2>
+    <p>Выберите страну, чтобы узнать о ней подробнее.</p>
 
-  <ul>
-    <% countries.forEach(function(country) { %>
-      <li>
-        <a href="/<%= country.slug %>">
-          <%= country.name %>
-        </a>
+    <% } else { %>
 
-        <p>
-          <%= country.region %>
-        </p>
+      <h2>Страны континента: <%= title %>
+      </h2>
+      <p>Выберите страну, чтобы узнать больше о ней.</p>
 
-        <img src="/images/<%= country.slug %>.jpg" alt="<%= country.name %>" style="height: 150px; margin-bottom: 0;" />
-      </li>
-      <% }); %>
-  </ul>
- 
+      <% } %>
+
+        <ul>
+          <% countries.forEach(function(country) { %>
+
+            <li>
+              <a href="/<%= country.slug %>">
+                <%= country.name %>
+              </a>
+
+              <p>
+                <%= country.region %>
+              </p>
+
+              <img src="/images/<%= country.slug %>.jpg" alt="<%= country.name %>"
+                style="height: 150px; margin-bottom: 0;" />
+            </li>
+
+            <% }); %>
+        </ul>
