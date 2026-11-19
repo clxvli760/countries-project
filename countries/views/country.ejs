@@ -4,35 +4,31 @@
         <%= country.name %>
     </h2>
 
+    <img src="/images/<%= country.slug %>.jpg" alt="<%= country.name %>" />
+
     <h3>Информация о стране</h3>
 
-    <p>
-        <b>Регион:</b>
+    <p><b>Регион:</b>
         <%= country.region %>
     </p>
 
-    <p>
-        <b>Население:</b>
-        <%= country.population %>
+    <p><b>Население:</b>
+        <%= country.population.toLocaleString('ru-RU') %>
     </p>
 
-    <p>
-        <b>Столица:</b>
+    <p><b>Столица:</b>
         <%= country.capital %>
     </p>
 
-    <p>
-        <b>Языки:</b>
-        <%= country.languages.join(', ') %>
-</p>
+    <p><b>Языки:</b>
+        <%= country.languages.join(', ') %></p>
 
-<p>
-    <b>Города:</b>
-    <%= country.cities.join(' , ') %>
-</p>
+<p><b>Крупные города:</b> <%= country.cities.join(' , ') %></p>
 
 <p>
     <b>Вакцинация:</b>
     <%= country.vaccinated === undefined
         ? ' Не указано' : country.vaccinated ? 'Да' : 'Нет' %>
     </p>
+
+    <a href="/">← Вернуться к списку стран</a>

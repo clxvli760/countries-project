@@ -1,8 +1,114 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* Общие настройки */
+* {
+  box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f1f6fb;
+  color: #29384a;
+  line-height: 1.6;
+}
+
+/* Шапка сайта */
+header {
+  background: #315b80;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+header p {
+  margin: 8px 0 0;
+  color: #dceaf5;
+}
+
+/* Основная часть */
+main {
+  max-width: 1100px;
+  margin: 35px auto;
+  padding: 25px;
+}
+
+/* Заголовки */
+h2 {
+  color: #315b80;
+  margin-bottom: 20px;
+}
+
+h3 {
+  color: #527b9d;
+}
+
+/* Список стран */
+ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+li {
+  background: white;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+  transition: 0.2s;
+}
+
+li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Ссылки */
 a {
-  color: #00B7FF;
+  color: #315b80;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+a:hover {
+  color: #d17b56;
+}
+
+/* Изображения */
+img {
+  display: block;
+  width: 100%;
+  max-width: 650px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin: 20px 0;
+}
+
+/* Информация о стране */
+main p {
+  background: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+/* Подвал */
+footer {
+  background: #315b80;
+  color: white;
+  text-align: center;
+  padding: 18px;
+  margin-top: 40px;
+}
+
+footer p {
+  margin: 0;
 }
