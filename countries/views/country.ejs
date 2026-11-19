@@ -1,23 +1,10 @@
-<!DOCTYPE html>
-<html lang="ru">
+<% layout('./layout/page.ejs') %>
 
-<head>
-    <meta charset="UTF-8">
-
-    <title>
+    <h2>
         <%= country.name %>
-    </title>
+    </h2>
 
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-</head>
-
-<body>
-
-    <h1>
-        <%= country.name %>
-    </h1>
-
-    <h2>Информация о стране</h2>
+    <h3>Информация о стране</h3>
 
     <p>
         <b>Регион:</b>
@@ -37,19 +24,15 @@
     <p>
         <b>Языки:</b>
         <%= country.languages.join(', ') %>
+</p>
+
+<p>
+    <b>Города:</b>
+    <%= country.cities.join(' , ') %>
+</p>
+
+<p>
+    <b>Вакцинация:</b>
+    <%= country.vaccinated === undefined
+        ? ' Не указано' : country.vaccinated ? 'Да' : 'Нет' %>
     </p>
-
-    <p>
-        <b>Крупные города:</b>
-        <%= country.cities.join(' , ') %>
-    </p>
-
-    <p>
-        <b>Вакцинация:</b>
-        <%= country.vaccinated === undefined
-            ? ' Не указано' : country.vaccinated ? 'Да' : 'Нет' %>
-    </p>
-
-</body>
-
-</html>

@@ -145,6 +145,7 @@ router.get('/:slug', function (req, res, next) {
 
   // Передаём данные в шаблон
   res.render('country', {
+    title: country.name,
     country: country
   });
 });
