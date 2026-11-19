@@ -1,69 +1,152 @@
+
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+// Данные стран из моей базы MongoDB
+var countries = [
+  {
+    slug: 'japan',
+    name: 'Япония',
+    region: 'Азия',
+    population: 124000000,
+    capital: 'Токио',
+    languages: ['японский'],
+    cities: ['Токио', 'Осака', 'Кобе'],
+    vaccinated: true
+  },
+  {
+    slug: 'france',
+    name: 'Франция',
+    region: 'Европа',
+    population: 68000000,
+    capital: 'Париж',
+    languages: ['французский'],
+    cities: ['Париж'],
+    vaccinated: true
+  },
+  {
+    slug: 'brazil',
+    name: 'Бразилия',
+    region: 'Америка',
+    population: 215000000,
+    capital: 'Бразилиа',
+    languages: ['португальский'],
+    cities: ['Рио', 'Сан-Паулу'],
+    vaccinated: true
+  },
+  {
+    slug: 'egypt',
+    name: 'Египет',
+    region: 'Африка',
+    population: 110000000,
+    capital: 'Каир',
+    languages: ['арабский'],
+    cities: ['Каир', 'Александрия'],
+    vaccinated: false
+  },
+  {
+    slug: 'australia',
+    name: 'Австралия',
+    region: 'Океания',
+    population: 52000000,
+    capital: 'Канберра',
+    languages: ['английский'],
+    cities: ['Сидней', 'Мельбурн']
+  },
+  {
+    slug: 'canada',
+    name: 'Канада',
+    region: 'Америка',
+    population: 38000000,
+    capital: 'Оттава',
+    languages: ['английский', 'французский'],
+    cities: ['Торонто', 'Ванкувер'],
+    vaccinated: true
+  },
+  {
+    slug: 'india',
+    name: 'Индия',
+    region: 'Азия',
+    population: 1405000000,
+    capital: 'Нью-Дели',
+    languages: ['хинди', 'английский'],
+    cities: ['Мумбаи', 'Дели']
+  },
+  {
+    slug: 'norway',
+    name: 'Норвегия',
+    region: 'Европа',
+    population: 5500000,
+    capital: 'Осло',
+    languages: ['норвежский'],
+    cities: ['Осло', 'Берген'],
+    vaccinated: true
+  },
+  {
+    slug: 'iceland',
+    name: 'Исландия',
+    region: 'Европа',
+    population: 380000,
+    capital: 'Рейкьявик',
+    languages: ['исландский'],
+    cities: ['Рейкьявик']
+  },
+  {
+    slug: 'china',
+    name: 'Китай',
+    region: 'Азия',
+    population: 1400000000,
+    capital: 'Пекин',
+    languages: ['китайский'],
+    cities: ['Пекин', 'Шанхай'],
+    vaccinated: true
+  },
+  {
+    slug: 'mexico',
+    name: 'Мексика',
+    region: 'Америка',
+    population: 128000000,
+    capital: 'Мехико',
+    languages: ['испанский'],
+    cities: ['Мехико', 'Гвадалахара']
+  },
+  {
+    slug: 'south-africa',
+    name: 'ЮАР',
+    region: 'Африка',
+    population: 60000000,
+    capital: 'Претория',
+    languages: ['английский', 'африкаанс'],
+    cities: ['Йоханнесбург', 'Кейптаун'],
+    vaccinated: false
+  }
+];
+
+// Главная страница
+router.get('/', function (req, res, next) {
+  res.render('index', {
+    title: 'Страны мира',
+    countries: countries
+  });
 });
 
-/* Страница Японии */
-router.get('/japan', function (req, res, next) {
-  res.send("<h1>Страница Японии</h1>");
-});
+// Страница отдельной страны
+router.get('/:slug', function (req, res, next) {
 
-/* Страница Франции */
-router.get('/france', function (req, res, next) {
-  res.send("<h1>Страница Франции</h1>");
-});
+  // Ищем страну по адресу
+  var country = countries.find(function (item) {
+    return item.slug === req.params.slug;
+  });
 
-/* Страница Бразилии */
-router.get('/brazil', function (req, res, next) {
-  res.send("<h1>Страница Бразилии</h1>");
-});
+  // Если страна не найдена
+  if (!country) {
+    return next();
+  }
 
-/* Страница Египта */
-router.get('/egypt', function (req, res, next) {
-  res.send("<h1>Страница Египта</h1>");
-});
-
-/* Страница Австралии */
-router.get('/australia', function (req, res, next) {
-  res.send("<h1>Страница Австралии</h1>");
-});
-
-/* Страница Канады */
-router.get('/canada', function (req, res, next) {
-  res.send("<h1>Страница Канады</h1>");
-});
-
-/* Страница Индии */
-router.get('/india', function (req, res, next) {
-  res.send("<h1>Страница Индии</h1>");
-});
-
-/* Страница Норвегии */
-router.get('/norway', function (req, res, next) {
-  res.send("<h1>Страница Норвегии</h1>");
-});
-
-/* Страница Исландии */
-router.get('/iceland', function (req, res, next) {
-  res.send("<h1>Страница Исландии</h1>");
-});
-
-/* Страница Китая */
-router.get('/china', function (req, res, next) {
-  res.send("<h1>Страница Китая</h1>");
-});
-
-/* Страница Мексики */
-router.get('/mexico', function (req, res, next) {
-  res.send("<h1>Страница Мексики</h1>");
-});
-
-/* Страница ЮАР */
-router.get('/south-africa', function (req, res, next) {
-  res.send("<h1>Страница ЮАР</h1>");
+  // Передаём данные в шаблон
+  res.render('country', {
+    country: country
+  });
 });
 
 module.exports = router;
